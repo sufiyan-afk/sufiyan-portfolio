@@ -28,7 +28,11 @@ SECRET_KEY = 'django-insecure-*y2m*iznve7jkj3l@u59j=hqw-6$lh!(qa%e_uv7s*)uhxt9dj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "sufiyan-portfolio-api.onrender.com",
+]
 
 
 # Application definition
