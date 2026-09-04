@@ -141,8 +141,7 @@ MAILERS = {
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://sufiyan-portfolio-qbnbivwxz-sufiyan-tal.vercel.app",
+    "https://sufiyan-portfolio-teal.vercel.app",
 ]
