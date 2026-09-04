@@ -4,8 +4,8 @@ import { ArrowUpRight, Mail } from "lucide-react";
 const contactLinks = [
   {
     label: "Email",
-    value: "your-email@example.com",
-    href: "mailto:your-email@example.com",
+    value: "sufiyantal43@gmail.com",
+    href: "mailto:sufiyantal43@gmail.com",
     icon: "email",
   },
   {

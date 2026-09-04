@@ -6,7 +6,6 @@ import {
   Database,
   Layers3,
   LockKeyhole,
-  Server,
   ShoppingBag,
 } from "lucide-react";
 
@@ -27,30 +26,44 @@ const projects = [
       "RESTful API architecture",
     ],
     github: "https://github.com/sufiyan-afk/Job-portal-api",
-    status: "LIVE CODE",
+    footer: "Authentication & API",
   },
+
   {
     number: "02",
-    type: "E-COMMERCE SYSTEM",
+    type: "FULL-STACK SYSTEM",
     title: "Clothing E-commerce",
     description:
-      "An online shopping platform focused on product management, cart operations, orders, authentication and API-driven application flow.",
+      "A full-stack clothing e-commerce platform covering product management, authentication, cart operations, orders and API-driven application flow.",
     icon: ShoppingBag,
     accent: "cyan",
-    stack: ["Python", "Django", "DRF", "MySQL"],
-    flow: ["User", "Product", "Cart", "Order"],
+    stack: [
+      "Python",
+      "Django",
+      "DRF",
+      "MySQL",
+      "HTML",
+      "CSS",
+      "Bootstrap",
+      "JavaScript",
+      "React.js",
+    ],
+    flow: ["User", "Frontend", "API", "Database"],
     features: [
       "Product & category management",
-      "Cart and order workflow",
+      "Cart & order workflow",
       "Authentication & API integration",
     ],
     github: null,
-    status: "INSTITUTE PROJECT",
+    footer: "Full-Stack Commerce",
   },
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 35 },
+  hidden: {
+    opacity: 0,
+    y: 25,
+  },
   visible: {
     opacity: 1,
     y: 0,
@@ -61,26 +74,29 @@ const fadeUp = {
   },
 };
 
-function ProjectFlow({ items }) {
+function ProjectFlow({ items, isViolet }) {
   return (
-    <div className="mt-5 overflow-hidden rounded-2xl border border-white/[0.08] bg-black/20 p-3.5 sm:p-4">
-      <div className="mb-2.5 flex items-center justify-between">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/35">
+    <div className="mt-4 rounded-xl border border-white/[0.08] bg-black/20 px-3 py-2.5">
+      <div className="mb-2 flex items-center justify-between">
+        <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/30">
           Application Flow
         </span>
 
-        <Layers3 size={14} className="text-white/30" />
+        <Layers3
+          size={13}
+          className={isViolet ? "text-violet-300/40" : "text-cyan-300/40"}
+        />
       </div>
 
       <div className="flex flex-wrap items-center gap-1.5">
         {items.map((item, index) => (
           <div key={item} className="flex items-center gap-1.5">
-            <span className="rounded-lg border border-white/[0.08] bg-white/[0.035] px-2.5 py-1.5 text-[10px] font-medium text-white/65">
+            <span className="rounded-md border border-white/[0.08] bg-white/[0.035] px-2 py-1 text-[9px] font-medium text-white/60">
               {item}
             </span>
 
             {index < items.length - 1 && (
-              <span className="text-white/20">→</span>
+              <span className="text-[10px] text-white/20">→</span>
             )}
           </div>
         ))}
@@ -89,127 +105,62 @@ function ProjectFlow({ items }) {
   );
 }
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project }) {
   const Icon = project.icon;
   const isViolet = project.accent === "violet";
 
   return (
     <motion.article
       variants={fadeUp}
-      whileHover={{ y: -6 }}
+      whileHover={{ y: -5 }}
       transition={{ duration: 0.25 }}
-      className="group relative overflow-hidden rounded-[26px] border border-white/[0.09] bg-white/[0.025]"
+      className="group relative overflow-hidden rounded-[24px] border border-white/[0.09] bg-white/[0.025]"
     >
-      {/* glow */}
+      {/* subtle glow */}
       <div
-        className={`pointer-events-none absolute -right-24 -top-24 h-52 w-52 rounded-full blur-3xl transition-opacity duration-500 ${
+        className={`pointer-events-none absolute -right-24 -top-24 h-48 w-48 rounded-full blur-3xl transition-opacity duration-500 ${
           isViolet
-            ? "bg-violet-500/15 group-hover:bg-violet-500/25"
+            ? "bg-violet-500/10 group-hover:bg-violet-500/20"
             : "bg-cyan-500/10 group-hover:bg-cyan-500/20"
         }`}
       />
 
-      {/* top visual area */}
-      <div className="relative p-3.5 sm:p-4">
-        <div className="rounded-[20px] border border-white/[0.08] bg-[#080b18] p-4 sm:p-5">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div
-                className={`flex h-10 w-10 items-center justify-center rounded-xl border ${
-                  isViolet
-                    ? "border-violet-400/25 bg-violet-500/15 text-violet-300"
-                    : "border-cyan-400/20 bg-cyan-500/10 text-cyan-300"
-                }`}
-              >
-                <Icon size={19} />
-              </div>
-
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/35">
-                  Project {project.number}
-                </p>
-
-                <p className="mt-1 text-xs font-medium text-white/55">
-                  {project.status}
-                </p>
-              </div>
-            </div>
-
+      <div className="relative p-4 sm:p-5">
+        {/* Header */}
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-3">
             <div
-              className={`h-2 w-2 rounded-full ${
-                isViolet ? "bg-violet-400" : "bg-cyan-400"
-              } shadow-[0_0_14px_currentColor]`}
-            />
-          </div>
-
-          {/* dashboard */}
-          <div className="mt-5 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-3.5">
-            <div className="mb-3 flex items-center justify-between">
-              <span className="text-[10px] uppercase tracking-[0.18em] text-white/30">
-                System Overview
-              </span>
-
-              <Server size={14} className="text-white/25" />
+              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${
+                isViolet
+                  ? "border-violet-400/20 bg-violet-500/10 text-violet-300"
+                  : "border-cyan-400/20 bg-cyan-500/10 text-cyan-300"
+              }`}
+            >
+              <Icon size={18} />
             </div>
 
-            <div className="grid grid-cols-3 gap-1.5">
-              <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] p-2.5">
-                <p className="text-[9px] uppercase text-white/25">API</p>
-                <p className="mt-1 text-sm font-semibold text-white/75">
-                  REST
-                </p>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/25">
+                  Project {project.number}
+                </span>
+
+                <span className="h-1 w-1 rounded-full bg-white/20" />
+
+                <span
+                  className={`text-[9px] font-semibold uppercase tracking-[0.15em] ${
+                    isViolet ? "text-violet-300/60" : "text-cyan-300/60"
+                  }`}
+                >
+                  {project.type}
+                </span>
               </div>
 
-              <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] p-2.5">
-                <p className="text-[9px] uppercase text-white/25">Auth</p>
-                <p className="mt-1 text-sm font-semibold text-white/75">
-                  {index === 0 ? "JWT" : "Secure"}
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] p-2.5">
-                <p className="text-[9px] uppercase text-white/25">DB</p>
-                <p className="mt-1 text-sm font-semibold text-white/75">
-                  MySQL
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "78%" }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 1.1,
-                  delay: 0.25,
-                  ease: "easeOut",
-                }}
-                className={`h-full rounded-full ${
-                  isViolet
-                    ? "bg-gradient-to-r from-violet-500 to-blue-400"
-                    : "bg-gradient-to-r from-cyan-500 to-blue-400"
-                }`}
-              />
+              <h3 className="mt-1 text-xl font-bold tracking-tight text-white sm:text-2xl">
+                {project.title}
+              </h3>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* content */}
-      <div className="relative px-4 pb-5 sm:px-5 sm:pb-6">
-        <p
-          className={`text-[10px] font-semibold uppercase tracking-[0.24em] ${
-            isViolet ? "text-violet-300/70" : "text-cyan-300/70"
-          }`}
-        >
-          {project.type}
-        </p>
-
-        <div className="mt-1.5 flex items-start justify-between gap-3">
-          <h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
-            {project.title}
-          </h3>
 
           {project.github && (
             <a
@@ -217,42 +168,48 @@ function ProjectCard({ project, index }) {
               target="_blank"
               rel="noreferrer"
               aria-label={`Open ${project.title} GitHub repository`}
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/[0.09] bg-white/[0.025] text-white/55 transition-all duration-300 hover:-translate-y-1 hover:border-violet-400/30 hover:bg-violet-500/10 hover:text-white"
+              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/[0.09] bg-white/[0.025] text-white/45 transition-all duration-300 hover:-translate-y-1 hover:text-white ${
+                isViolet
+                  ? "hover:border-violet-400/30 hover:bg-violet-500/10"
+                  : "hover:border-cyan-400/30 hover:bg-cyan-500/10"
+              }`}
             >
               <ArrowUpRight size={16} />
             </a>
           )}
         </div>
 
-        <p className="mt-3 max-w-xl text-xs leading-6 text-white/50 sm:text-sm">
+        {/* Description */}
+        <p className="mt-3 text-xs leading-5 text-white/45 sm:text-sm sm:leading-6">
           {project.description}
         </p>
 
-        {/* stack */}
-        <div className="mt-4 flex flex-wrap gap-1.5">
+        {/* Stack */}
+        <div className="mt-3.5 flex flex-wrap gap-1.5">
           {project.stack.map((tech) => (
             <span
               key={tech}
-              className="rounded-full border border-white/[0.08] bg-white/[0.025] px-2.5 py-1 text-[10px] font-medium text-white/55"
+              className="rounded-full border border-white/[0.08] bg-white/[0.025] px-2.5 py-1 text-[9px] font-medium text-white/50"
             >
               {tech}
             </span>
           ))}
         </div>
 
-        <ProjectFlow items={project.flow} />
+        {/* Application Flow */}
+        <ProjectFlow items={project.flow} isViolet={isViolet} />
 
-        {/* features */}
-        <div className="mt-5 space-y-2">
+        {/* Features */}
+        <div className="mt-4 grid gap-x-4 gap-y-2 sm:grid-cols-2">
           {project.features.map((feature) => (
             <div
               key={feature}
-              className="flex items-center gap-2.5 text-[11px] text-white/50"
+              className="flex items-center gap-2 text-[10px] text-white/45 sm:text-[11px]"
             >
               <CheckCircle2
-                size={14}
+                size={13}
                 className={
-                  isViolet ? "text-violet-300/70" : "text-cyan-300/70"
+                  isViolet ? "text-violet-300/60" : "text-cyan-300/60"
                 }
               />
 
@@ -261,18 +218,16 @@ function ProjectCard({ project, index }) {
           ))}
         </div>
 
-        {/* footer */}
-        <div className="mt-5 flex items-center justify-between border-t border-white/[0.07] pt-4">
-          <div className="flex items-center gap-2 text-[11px] text-white/35">
-            {index === 0 ? (
-              <LockKeyhole size={13} />
+        {/* Footer */}
+        <div className="mt-4 flex items-center justify-between border-t border-white/[0.07] pt-3">
+          <div className="flex items-center gap-2 text-[10px] text-white/30">
+            {isViolet ? (
+              <LockKeyhole size={12} />
             ) : (
-              <Database size={13} />
+              <Database size={12} />
             )}
 
-            <span>
-              {index === 0 ? "Authentication & API" : "Commerce workflow"}
-            </span>
+            <span>{project.footer}</span>
           </div>
 
           {project.github ? (
@@ -280,14 +235,18 @@ function ProjectCard({ project, index }) {
               href={project.github}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-white transition-colors hover:text-violet-300"
+              className={`inline-flex items-center gap-1 text-[11px] font-semibold text-white transition-colors ${
+                isViolet
+                  ? "hover:text-violet-300"
+                  : "hover:text-cyan-300"
+              }`}
             >
               View Github
-              <ArrowUpRight size={14} />
+              <ArrowUpRight size={13} />
             </a>
           ) : (
-            <span className="text-[11px] font-medium text-white/25">
-              Private / Institute
+            <span className="text-[10px] font-medium text-white/25">
+              Personal Project
             </span>
           )}
         </div>
@@ -300,16 +259,17 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative px-4 py-14 sm:px-6 sm:py-16 lg:px-8"
+      className="relative px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14"
     >
-      {/* background */}
+      {/* Background */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-20 h-80 w-80 -translate-x-1/2 rounded-full bg-violet-500/[0.06] blur-[120px]" />
-        <div className="absolute bottom-10 right-0 h-72 w-72 rounded-full bg-blue-500/[0.05] blur-[120px]" />
+        <div className="absolute left-1/2 top-16 h-72 w-72 -translate-x-1/2 rounded-full bg-violet-500/[0.05] blur-[120px]" />
+
+        <div className="absolute bottom-10 right-0 h-64 w-64 rounded-full bg-blue-500/[0.04] blur-[120px]" />
       </div>
 
       <div className="relative mx-auto max-w-6xl">
-        {/* heading */}
+        {/* Section heading */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -317,7 +277,7 @@ export default function Projects() {
           variants={fadeUp}
           className="max-w-3xl"
         >
-          <div className="mb-4 flex items-center gap-3">
+          <div className="mb-3 flex items-center gap-3">
             <span className="h-px w-8 bg-violet-400/70" />
 
             <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-violet-300/80">
@@ -333,13 +293,13 @@ export default function Projects() {
             </span>
           </h2>
 
-          <p className="mt-5 max-w-2xl text-sm leading-7 text-white/45 sm:text-base">
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-white/45 sm:text-base">
             A selection of projects focused on backend architecture,
             authentication, APIs, databases and real application workflows.
           </p>
         </motion.div>
 
-        {/* projects */}
+        {/* Project cards */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -352,24 +312,20 @@ export default function Projects() {
               },
             },
           }}
-          className="mt-8 grid gap-5 lg:grid-cols-2"
+          className="mt-6 grid gap-5 lg:grid-cols-2"
         >
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              project={project}
-              index={index}
-            />
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
           ))}
         </motion.div>
 
-        {/* bottom statement */}
+        {/* Bottom statement */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65, delay: 0.1 }}
-          className="mt-6 rounded-2xl border border-white/[0.07] bg-white/[0.02] px-5 py-4 text-center sm:px-8"
+          className="mt-5 rounded-2xl border border-white/[0.07] bg-white/[0.02] px-5 py-4 text-center sm:px-8"
         >
           <p className="text-xs leading-6 text-white/35 sm:text-sm">
             I focus on understanding the complete flow —{" "}

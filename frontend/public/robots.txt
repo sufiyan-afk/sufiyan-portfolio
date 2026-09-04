@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sufiyan-portfolio-qbnbivwxz-sufiyan-tal.vercel.app/sitemap.xml

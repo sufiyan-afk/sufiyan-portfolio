@@ -8,7 +8,6 @@ const links = [
   { label: "Skills", id: "skills" },
   { label: "Projects", id: "projects" },
   { label: "AI Usage", id: "ai-usage" },
-  // { label: "Github", id: "github" },
   { label: "Contact", id: "contact" },
 ];
 
@@ -77,14 +76,21 @@ function Navbar() {
     <header className="fixed left-0 right-0 top-0 z-[100] px-3 pt-3 sm:px-5 sm:pt-4">
       <div className="mx-auto flex h-[52px] max-w-6xl items-center justify-between rounded-2xl border border-white/[0.08] bg-[#070a18]/80 px-4 backdrop-blur-xl sm:h-[56px] sm:px-5">
 
-        {/* Logo */}
-        <button
-          type="button"
-          onClick={() => navigateTo("home")}
-          className="text-sm font-semibold tracking-[-0.02em] text-white"
-        >
-          Sufiyan Tal
-        </button>
+        {/* Logo / Brand */}
+          <button
+            type="button"
+            onClick={() => navigateTo("home")}
+            className="flex items-center text-white transition-opacity duration-300 hover:opacity-80"
+            style={{ fontFamily: "Manrope, sans-serif" }}
+          >
+            <span className="text-[18px] font-extrabold tracking-[-0.01em] sm:text-[19px]">
+              Sufiyan
+            </span>
+
+            <span className="ml-2 text-[18px] font-extrabold tracking-[-0.01em] sm:text-[19px]">
+              Tal
+            </span>
+          </button>
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-1 md:flex">

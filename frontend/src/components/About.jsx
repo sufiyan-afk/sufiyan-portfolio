@@ -39,7 +39,7 @@ function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-[#050713] pb-20 pt-10 sm:pb-24 sm:pt-12 lg:pb-28 lg:pt-14"
+      className="relative scroll-mt-24 overflow-hidden bg-[#050713] pb-20 pt-10 sm:pb-24 sm:pt-12 lg:pb-28 lg:pt-14"
     >
       {/* Background glow */}
       <div className="pointer-events-none absolute left-[-180px] top-[20%] h-[360px] w-[360px] rounded-full bg-violet-600/[0.06] blur-[120px]" />
