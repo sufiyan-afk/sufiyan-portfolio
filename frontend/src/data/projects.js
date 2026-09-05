@@ -11,7 +11,7 @@ const projects = [
     description:
       "Online shopping backend covering products, categories, cart and order workflows.",
     technologies: ["Django", "DRF", "MySQL", "REST API"],
-    github: "#",
+    github: null,
   },
 ];
 

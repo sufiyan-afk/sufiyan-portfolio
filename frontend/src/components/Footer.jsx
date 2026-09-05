@@ -16,11 +16,9 @@ const Footer = () => {
       <div className="relative mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-10">
         {/* Main Footer */}
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-          
           {/* Brand */}
           <div className="max-w-md">
             <div className="mb-4 flex items-center gap-3">
-              
               {/* Sparkle Icon */}
               <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] shadow-lg shadow-violet-500/5">
                 <Sparkles className="h-4 w-4 text-violet-300" />
@@ -51,7 +49,6 @@ const Footer = () => {
             </p>
 
             <div className="flex items-center gap-3">
-              
               {/* GitHub */}
               <a
                 href="https://github.com/sufiyan-afk"
@@ -103,13 +100,9 @@ const Footer = () => {
 
         {/* Bottom */}
         <div className="flex flex-col gap-5 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-          
-          <p>
-            © 2026 Sufiyan Tal. All rights reserved.
-          </p>
+          <p>© 2026 Sufiyan Tal. All rights reserved.</p>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-            
             <span>
               Built with{" "}
               <span className="font-medium text-slate-300">
@@ -119,9 +112,7 @@ const Footer = () => {
 
             <span className="hidden h-1 w-1 rounded-full bg-slate-700 sm:block" />
 
-            <span>
-              AI-assisted development
-            </span>
+            <span>AI-assisted development</span>
 
             {/* Back to Top */}
             <button

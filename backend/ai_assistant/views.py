@@ -1,8 +1,13 @@
-import requests
+import time
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 
+import requests
 from django.conf import settings
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
+from analytics.models import AIRequest
 
 
 PORTFOLIO_SYSTEM_PROMPT = """
@@ -333,6 +338,14 @@ ANSWERING RULES
 
 17. Never make up missing project features just to provide a more impressive answer.
 
+18. Never infer details from the meaning of a feature name. For example, "Job Management" does not mean posting, editing, deleting, applying for, or viewing jobs unless those actions are explicitly listed.
+
+19. When a project feature is described only with a broad label such as "Recruiter Workflows", repeat the broad label without inventing what specific actions or processes it contains.
+
+20. Sufiyan's strongest practical focus is Python, Django, Django REST Framework, REST APIs, databases, authentication, and backend development. React.js and other frontend technologies are part of his full-stack development and learning journey. Do not overstate his frontend experience.
+
+21. When explaining a project, use only the project information explicitly provided in the portfolio knowledge. Mention only the project's stated purpose, type, technologies, listed features, listed concepts, architecture flow, database role, and testing approach. Do not explain what a feature normally means or add details based on assumptions. Do not describe specific user actions, API methods, database contents, workflows, or system behavior unless they are explicitly listed. Avoid promotional or evaluative claims such as "robust", "secure", "scalable", "advanced", "strong", or "well-structured" unless explicitly supported by the portfolio knowledge.
+
 - Experience accuracy:
 If asked about Sufiyan's years of professional experience, internships, employment, clients, or work experience, do not invent or estimate any numbers or positions. 
 Clearly state that his profile currently focuses on practical project experience and Full Stack Developer training, unless specific professional experience is explicitly provided in the portfolio knowledge.
@@ -353,6 +366,8 @@ Answer the visitor's actual question first.
 
 @api_view(["POST"])
 def chat(request):
+    start_time = time.time()
+
     user_message = request.data.get("message", "").strip()
 
     if not user_message:
@@ -361,45 +376,89 @@ def chat(request):
             status=400,
         )
 
-    response = requests.post(
-        "https://openrouter.ai/api/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {settings.OPENROUTER_API_KEY}",
-            "Content-Type": "application/json",
-        },
-        json={
-            "model": "google/gemini-2.5-flash",
-            "messages": [
-                {
-                    "role": "system",
-                    "content": PORTFOLIO_SYSTEM_PROMPT,
-                },
-                {
-                    "role": "user",
-                    "content": user_message,
-                },
-            ],
-            "max_tokens": 1000,
-        },
-        timeout=30,
+    today = datetime.now(ZoneInfo("Asia/Kolkata")).date()
+    dob = date(2002, 3, 30)
+
+    current_age = today.year - dob.year - (
+        (today.month, today.day) < (dob.month, dob.day)
     )
 
-    if response.status_code != 200:
-        print("OPENROUTER ERROR:", response.status_code)
-        print(response.text)
+    dynamic_context = f"""
+CURRENT DATE: {today.strftime("%d %B %Y")}
+SUFIYAN'S CURRENT AGE: {current_age} years
+
+When asked for Sufiyan's current age, use the current age provided above and answer directly.
+Do not tell the visitor to calculate the age themselves.
+"""
+
+    try:
+        response = requests.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {settings.OPENROUTER_API_KEY}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": "google/gemini-2.5-flash",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": PORTFOLIO_SYSTEM_PROMPT + dynamic_context,
+                    },
+                    {
+                        "role": "user",
+                        "content": user_message,
+                    },
+                ],
+                "max_tokens": 1000,
+            },
+            timeout=30,
+        )
+
+        response_time = time.time() - start_time
+
+        if response.status_code != 200:
+            print("OPENROUTER ERROR:", response.status_code)
+            print(response.text)
+
+            AIRequest.objects.create(
+                question=user_message,
+                response_time=response_time,
+                status="failed",
+            )
+
+            return Response(
+                {"error": "AI provider request failed."},
+                status=502,
+            )
+
+        data = response.json()
+        reply = data["choices"][0]["message"]["content"]
+
+        AIRequest.objects.create(
+            question=user_message,
+            response_time=response_time,
+            status="success",
+        )
 
         return Response(
             {
-                "error": "AI provider request failed.",
-                "details": response.text,
-            },
-            status=502,
+                "reply": reply,
+            }
         )
 
-    data = response.json()
+    except Exception as error:
+        response_time = time.time() - start_time
 
-    return Response(
-        {
-            "reply": data["choices"][0]["message"]["content"]
-        }
-    )
+        print("PORTFOLIO AI ERROR:", error)
+
+        AIRequest.objects.create(
+            question=user_message,
+            response_time=response_time,
+            status="failed",
+        )
+
+        return Response(
+            {"error": "Unable to process the AI request right now."},
+            status=500,
+        )

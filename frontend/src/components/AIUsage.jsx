@@ -29,7 +29,6 @@ function AIUsage() {
           className="rounded-[30px] border border-violet-400/[0.12] bg-gradient-to-br from-violet-500/[0.07] via-white/[0.02] to-blue-500/[0.04] p-5 sm:p-8 lg:p-10"
         >
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-
             <div>
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-500/[0.08] text-violet-300">
                 <BrainCircuit size={21} />

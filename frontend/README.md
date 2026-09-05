@@ -1,16 +1,65 @@
-# React + Vite
+# Sufiyan Tal — Full-Stack Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio website showcasing my development journey, technical skills, projects, and AI-assisted development approach.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Frontend
+- React.js
+- Vite
+- Tailwind CSS
+- Framer Motion
+- Lucide React
 
-## React Compiler
+### Backend
+- Django
+- Django REST Framework
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Database
+- PostgreSQL
 
-## Expanding the ESLint configuration
+### AI
+- OpenRouter
+- Gemini 2.5 Flash
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📌 Featured Projects
+
+### Job Portal API
+Role-based job portal backend with authentication, job management, and REST APIs.
+
+**Technologies:** Django, Django REST Framework, JWT, MySQL
+
+### Clothing E-commerce
+Online shopping backend covering products, categories, cart, and order workflows.
+
+**Technologies:** Django, Django REST Framework, MySQL, REST API
+
+## ✨ Portfolio Features
+
+- Responsive modern UI
+- Animated sections
+- Project showcase
+- Skills overview
+- AI-powered portfolio assistant
+- AI usage documentation
+- Contact section
+- SEO and search engine optimization
+- Portfolio analytics dashboard
+
+## 🤖 AI-Assisted Development
+
+AI tools were used during development for learning, debugging, brainstorming, code assistance, and improving development workflow.
+
+## 🌐 Live Portfolio
+
+**Sufiyan Tal**
+
+## 📬 Contact
+
+- Email: `sufiyantal43@gmail.com`
+- LinkedIn: `Sufiyan Tal`
+- GitHub: `sufiyan-afk`
+
+---
+
+© 2026 Sufiyan Tal. All rights reserved.

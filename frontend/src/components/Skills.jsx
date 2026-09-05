@@ -55,7 +55,7 @@ const groups = [
     icon: Wrench,
     skills: [
       "Git",
-      "Github",
+      "GitHub",
       "Postman",
       "VS Code",
     ],

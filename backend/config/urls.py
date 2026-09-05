@@ -17,7 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from analytics.admin import analytics_admin
+
+
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin/", analytics_admin.urls),
+
     path("api/portfolio-ai/", include("ai_assistant.urls")),
+
+    path("api/analytics/", include("analytics.urls")),
 ]

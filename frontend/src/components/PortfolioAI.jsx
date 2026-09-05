@@ -142,9 +142,7 @@ function PortfolioAI() {
                 <div
                   key={index}
                   className={`flex ${
-                    item.role === "user"
-                      ? "justify-end"
-                      : "justify-start"
+                    item.role === "user" ? "justify-end" : "justify-start"
                   }`}
                 >
                   <div
@@ -158,9 +156,7 @@ function PortfolioAI() {
                       <ReactMarkdown
                         components={{
                           p: ({ children }) => (
-                            <p className="mb-2 last:mb-0">
-                              {children}
-                            </p>
+                            <p className="mb-2 last:mb-0">{children}</p>
                           ),
 
                           strong: ({ children }) => (
@@ -181,9 +177,7 @@ function PortfolioAI() {
                             </ol>
                           ),
 
-                          li: ({ children }) => (
-                            <li>{children}</li>
-                          ),
+                          li: ({ children }) => <li>{children}</li>,
 
                           h1: ({ children }) => (
                             <h1 className="mb-2 text-sm font-semibold text-white">

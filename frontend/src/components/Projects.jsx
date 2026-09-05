@@ -84,7 +84,11 @@ function ProjectFlow({ items, isViolet }) {
 
         <Layers3
           size={13}
-          className={isViolet ? "text-violet-300/40" : "text-cyan-300/40"}
+          className={
+            isViolet
+              ? "text-violet-300/40"
+              : "text-cyan-300/40"
+          }
         />
       </div>
 
@@ -96,7 +100,9 @@ function ProjectFlow({ items, isViolet }) {
             </span>
 
             {index < items.length - 1 && (
-              <span className="text-[10px] text-white/20">→</span>
+              <span className="text-[10px] text-white/20">
+                →
+              </span>
             )}
           </div>
         ))}
@@ -149,7 +155,9 @@ function ProjectCard({ project }) {
 
                 <span
                   className={`text-[9px] font-semibold uppercase tracking-[0.15em] ${
-                    isViolet ? "text-violet-300/60" : "text-cyan-300/60"
+                    isViolet
+                      ? "text-violet-300/60"
+                      : "text-cyan-300/60"
                   }`}
                 >
                   {project.type}
@@ -197,7 +205,10 @@ function ProjectCard({ project }) {
         </div>
 
         {/* Application Flow */}
-        <ProjectFlow items={project.flow} isViolet={isViolet} />
+        <ProjectFlow
+          items={project.flow}
+          isViolet={isViolet}
+        />
 
         {/* Features */}
         <div className="mt-4 grid gap-x-4 gap-y-2 sm:grid-cols-2">
@@ -209,7 +220,9 @@ function ProjectCard({ project }) {
               <CheckCircle2
                 size={13}
                 className={
-                  isViolet ? "text-violet-300/60" : "text-cyan-300/60"
+                  isViolet
+                    ? "text-violet-300/60"
+                    : "text-cyan-300/60"
                 }
               />
 
@@ -241,7 +254,7 @@ function ProjectCard({ project }) {
                   : "hover:text-cyan-300"
               }`}
             >
-              View Github
+              View GitHub
               <ArrowUpRight size={13} />
             </a>
           ) : (
@@ -315,16 +328,30 @@ export default function Projects() {
           className="mt-6 grid gap-5 lg:grid-cols-2"
         >
           {projects.map((project) => (
-            <ProjectCard key={project.title} project={project} />
+            <ProjectCard
+              key={project.title}
+              project={project}
+            />
           ))}
         </motion.div>
 
         {/* Bottom statement */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65, delay: 0.1 }}
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.65,
+            delay: 0.1,
+          }}
           className="mt-5 rounded-2xl border border-white/[0.07] bg-white/[0.02] px-5 py-4 text-center sm:px-8"
         >
           <p className="text-xs leading-6 text-white/35 sm:text-sm">

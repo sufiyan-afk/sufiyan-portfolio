@@ -10,12 +10,12 @@ const contactLinks = [
   },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/your-profile",
-    href: "https://www.linkedin.com/in/your-profile",
+    value: "linkedin.com/in/sufiyan-tal-289ba6365",
+    href: "https://www.linkedin.com/in/sufiyan-tal-289ba6365/",
     icon: "linkedin",
   },
   {
-    label: "Github",
+    label: "GitHub",
     value: "github.com/sufiyan-afk",
     href: "https://github.com/sufiyan-afk",
     icon: "github",
