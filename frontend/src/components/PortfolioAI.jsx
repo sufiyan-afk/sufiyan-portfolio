@@ -11,7 +11,7 @@ function PortfolioAI() {
   const [messages, setMessages] = useState([
     {
       role: "ai",
-      text: "Hi! I'm Sufiyan's AI assistant. Ask me anything about his skills, projects, education, or experience.",
+      text: "Hi! I'm Sufiyan's AI assistant. Ask me anything about his skills, projects, education, development journey, or career direction.",
     },
   ]);
 
@@ -55,7 +55,7 @@ function PortfolioAI() {
         ...previous,
         {
           role: "ai",
-          text: data.reply,
+          text: data.reply.replace(/\u00a0/g, " "),
         },
       ]);
     } catch (error) {
@@ -155,6 +155,16 @@ function PortfolioAI() {
                     {item.role === "ai" ? (
                       <ReactMarkdown
                         components={{
+                          a: ({ href, children }) => (
+                            <a
+                              href={href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-violet-300 underline underline-offset-2 transition-colors hover:text-violet-200"
+                            >
+                              {children}
+                            </a>
+                          ),
                           p: ({ children }) => (
                             <p className="mb-2 last:mb-0">{children}</p>
                           ),
